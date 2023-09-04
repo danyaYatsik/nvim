@@ -7,20 +7,33 @@ vim.opt.cursorline = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.autoindent = true
 vim.opt.expandtab = true
+vim.opt.scrolloff = 8
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv('HOME') .. '.vim/undodir'
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.hlsearch = true
-
 vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 30
 
-vim.cmd.colorscheme('seoul256')
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.g.onedark_hide_endofbuffer = 1
+vim.g.onedark_termcolors = 16
+vim.g.onedark_terminal_italics = 1
+
+vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')

@@ -1,0 +1,16 @@
+function Alert(text)
+    require('notify')(text)
+end
+return {
+    'rcarriga/nvim-notify',
+    config = function()
+        local notify = require('notify')
+        notify.setup({
+            background_colour = "#000000",
+        })
+        vim.notify = notify
+        vim.keymap.set('n', '<leader>nh', function()
+            require('telescope').extensions.notify.notify()
+        end)
+    end
+}

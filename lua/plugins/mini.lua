@@ -11,7 +11,9 @@ return {
             file = 'Session.vim',
         })
 
-        require('mini.starter').setup()
+        require('mini.starter').setup({
+            footer = 'fuck it'
+        })
         require('mini.indentscope').setup()
         require('mini.comment').setup()
     end
