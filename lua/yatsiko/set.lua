@@ -35,5 +35,5 @@ vim.opt.smartcase = true
 vim.g.onedark_hide_endofbuffer = 1
 vim.g.onedark_termcolors = 16
 vim.g.onedark_terminal_italics = 1
+vim.g.floaterm_autohide = 2
 
-vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')

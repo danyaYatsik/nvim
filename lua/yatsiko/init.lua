@@ -4,4 +4,4 @@ require("yatsiko.remap")
 require("yatsiko.lazy")
 require('yatsiko.autocmd')
 
-ColorMyPencils('onedark')
+ColorMyPencils()

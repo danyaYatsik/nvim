@@ -3,6 +3,7 @@ return {
     dependencies = {
         { 'MunifTanjim/nui.nvim' }
     },
+    enabled = false,
     config = function()
         local fineline = require('fine-cmdline')
         fineline.setup({
@@ -12,8 +13,8 @@ return {
             },
             hooks = {
                 set_keymaps = function(imap, _)
-                    imap('<C-n>', fineline.fn.up_search_history)
-                    imap('<C-p>', fineline.fn.down_search_history)
+                    imap('<C-p>', fineline.fn.up_search_history)
+                    imap('<C-n>', fineline.fn.down_search_history)
                 end
             }
         })

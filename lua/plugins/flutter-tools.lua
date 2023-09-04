@@ -9,7 +9,7 @@ return {
         require('flutter-tools').setup({
             outline = {
                 open_cmd = "30vnew",
-                auto_open = true
+                auto_open = false,
             },
           --  decorations = {
           --      statusline = {
@@ -44,5 +44,8 @@ return {
         vim.keymap.set('n', '<leader>fm', commands.visual_debug)
         vim.keymap.set('n', '<leader>fd', devices.list_devices)
         vim.keymap.set('n', '<leader>fo', outline.toggle)
+        vim.keymap.set('n', '<leader>fl', function ()
+            vim.cmd('FlutterLogClear')
+        end)
     end,
 }
