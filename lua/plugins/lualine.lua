@@ -14,12 +14,6 @@ return {
                         use_mode_colors = true,
                     }
                 },
-                lualine_z = {
-                    {
-                        'buffers',
-                        use_mode_colors = true,
-                    }
-                }
             },
         })
     end

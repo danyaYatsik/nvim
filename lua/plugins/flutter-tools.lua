@@ -26,6 +26,13 @@ return {
             widget_guides = {
                 enabled = true,
             },
+            lsp = {
+                settings = {
+                    lineLength = 150,
+                    showTodos = true,
+                    renameFilesWithClasses = true
+                }
+            }
         })
         require('flutter-tools').setup_project({
             name = 'development',

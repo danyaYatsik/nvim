@@ -13,6 +13,7 @@ return {
                 minheight = 1,
             },
         })
+        vim.keymap.set('n', '<C-w>a', focus.focus_max_or_equal)
     end
 }
 

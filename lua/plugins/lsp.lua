@@ -30,25 +30,30 @@ return {
         lsp.on_attach(function(_, bufnr)
             -- see :help lsp-zero-keybindings
             -- to learn the available actions
-            lsp.default_keymaps({ buclientffer = bufnr })
+            lsp.default_keymaps({ buffer = bufnr })
             local opts = { buffer = bufnr, remap = false }
             local goto = require('goto-preview')
 
-            vim.keymap.set("n", "gd", function() goto.goto_preview_definition({}) end, opts)
-            vim.keymap.set("n", "gi", function() goto.goto_preview_implementation({}) end, opts)
-            vim.keymap.set("n", '<leader>vrr', function() goto.goto_preview_references() end, opts)
+            vim.keymap.set("n", "<leader>gd", function() goto.goto_preview_definition({}) end, opts)
+            vim.keymap.set("n", "<leader>gi", function() goto.goto_preview_implementation({}) end, opts)
+            vim.keymap.set("n", '<leader>gr', function() goto.goto_preview_references() end, opts)
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "[d", function() vim.lsp.buf.goto_next() end, opts)
-            vim.keymap.set("n", "]d", function() vim.lsp.buf.goto_prev() end, opts)
-            vim.keymap.set("n", '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-            vim.keymap.set("n", '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
-            vim.keymap.set("n", 'C-h', function() vim.lsp.buf.signature_help() end, opts)
+            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+            vim.keymap.set("n", '<leader>ga', function() vim.lsp.buf.code_action() end, opts)
+            vim.keymap.set("n", '<leader>gn', function() vim.lsp.buf.rename() end, opts)
+            vim.keymap.set("n", '<leader>gs', function() vim.lsp.buf.signature_help() end, opts)
             vim.keymap.set("n", '<leader>=', function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end,
                 opts)
         end)
 
-        require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+        local lsp_config = require('lspconfig')
+        lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+        lsp_config.jdtls.setup({
+
+        })
 
         lsp.setup()
+
     end
 }

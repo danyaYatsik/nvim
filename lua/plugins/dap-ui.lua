@@ -9,7 +9,7 @@ return {
         dapui.setup({
             layouts = {
                 {
-                    elements = { 'scopes', 'breakpoints', 'watches', 'stacks' },
+                    elements = { 'scopes', 'watches', 'breakpoints', 'stacks' },
                     size = 40,
                     position = "left", -- Can be "left" or "right"
                 },
