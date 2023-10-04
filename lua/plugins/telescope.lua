@@ -1,11 +1,12 @@
 return {
-    'nvim-telescope/telescope.nvim', version = '0.1.1',
-    dependencies = {'nvim-lua/plenary.nvim'},
-    config = function ()
+    'nvim-telescope/telescope.nvim',
+    version = '0.1.3',
+    dependencies = { 'nvim-lua/plenary.nvim', 'xiyaowong/transparent.nvim' },
+    config = function()
         require('telescope').setup({
             defaults = {
                 file_ignore_patterns = {
-                    'assets/'
+                    '*.png', '*.jpeg', '*.svg', '*.pdf'
                 }
             }
         })
@@ -16,5 +17,7 @@ return {
         vim.keymap.set('n', '<leader>ps', builtin.live_grep)
         vim.keymap.set('n', '<leader>jl', builtin.jumplist)
         vim.keymap.set('n', '<leader>pd', builtin.diagnostics)
+        vim.keymap.set('n', '<leader>pb', builtin.buffers)
+        vim.keymap.set('n', '<leader>ph', builtin.highlights)
     end
 }

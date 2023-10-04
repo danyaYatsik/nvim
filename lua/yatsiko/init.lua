@@ -1,4 +1,5 @@
 -- order matters(at least lazy should follow remap because it depends on leader)
+require('yatsiko.functions')
 require("yatsiko.set")
 require("yatsiko.remap")
 require("yatsiko.lazy")

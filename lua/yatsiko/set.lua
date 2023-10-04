@@ -1,6 +1,6 @@
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.cursorline = true
 
 vim.opt.tabstop = 4
@@ -30,9 +30,4 @@ vim.opt.splitbelow = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.g.onedark_hide_endofbuffer = 1
-vim.g.onedark_termcolors = 16
-vim.g.onedark_terminal_italics = 1
-vim.g.floaterm_autohide = 2
 

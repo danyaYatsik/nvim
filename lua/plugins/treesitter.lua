@@ -16,7 +16,7 @@ return {
                 "jsdoc", "json", "make",
                 "markdown_inline", "php",
                 "python", "scss", "sql",
-                "yaml", "dart"
+                "yaml", "dart", "xml"
             },
             sync_install = false,
             auto_install = true,

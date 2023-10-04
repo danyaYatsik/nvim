@@ -1,6 +1,6 @@
 return {
     'xiyaowong/transparent.nvim',
-    config = function ()
+    config = function()
         require('transparent').setup({
             groups = {
                 'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
