@@ -6,7 +6,6 @@ return {
         'neovim/nvim-lspconfig',             -- Required
         'williamboman/mason.nvim',           -- Optional
         'williamboman/mason-lspconfig.nvim', -- Optional
-        "smjonas/inc-rename.nvim",
         'stevearc/dressing.nvim',
 
   -- Autocompletion
@@ -40,12 +39,10 @@ return {
             vim.keymap.set("n", "<leader>gi", function() goto.goto_preview_implementation({}) end, opts)
             vim.keymap.set("n", '<leader>gr', function() goto.goto_preview_references() end, opts)
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
+            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
             vim.keymap.set("n", '<leader>ga', function() vim.lsp.buf.code_action() end, opts)
-            vim.keymap.set("n", '<leader>gn', function ()
-                return ':IncRename ' .. vim.fn.expand('<cword>')
-            end, {expr = true})
+            vim.keymap.set("n", '<leader>gn', vim.lsp.buf.rename, opts)
             vim.keymap.set("n", '<leader>gs', function() vim.lsp.buf.signature_help() end, opts)
             vim.keymap.set("n", '<leader>=', function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end,
                 opts)

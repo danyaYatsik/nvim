@@ -26,13 +26,15 @@ return {
                 lualine_a = {
                     {
                         'tabs',
-                        mode = 2,
+                        mode = 0,
+                        max_length = vim.o.columns / 8,
                         use_mode_colors = true,
                     }
                 },
                 lualine_z = {
                     {
                         'buffers',
+                        max_length = vim.o.columns / 8 * 7,
                         use_mode_colors = true,
                     }
                 }
