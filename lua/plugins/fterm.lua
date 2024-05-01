@@ -15,5 +15,8 @@ return {
         vim.api.nvim_create_user_command('DartGenerate', function()
             fterm.scratch({ cmd = { 'dart', 'run', 'build_runner', 'build', '--delete-conflicting-outputs' } })
         end, { bang = true })
+        vim.api.nvim_create_user_command('NpmStart', function()
+            fterm.scratch({ cmd = { 'npm', 'start' } })
+        end, { bang = true })
     end
 }

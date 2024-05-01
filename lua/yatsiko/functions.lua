@@ -4,8 +4,11 @@ function WindowYank()
 end
 
 function WindowPaste()
-    vim.cmd.vsplit()
-    vim.cmd.edit(vim.fn.getreg('w'))
+    local path = vim.fn.getreg('w')
+    if (path ~= '') then
+        vim.cmd.vsplit()
+        vim.cmd.edit(path)
+    end
 end
 
 function CloseOthers()
@@ -20,32 +23,29 @@ function CloseOthers()
 end
 
 function ColorMyPencils(scheme)
-    scheme = scheme or 'falcon'
+    scheme = scheme or 'tokyonight'
     vim.cmd.colorscheme(scheme)
 end
 
 function DefloatWindow()
-    local win_config = vim.api.nvim_win_get_config(0)
+    local parent_config = vim.api.nvim_win_get_config(0)
+    local relative = parent_config.win
 
-    Notify(win_config.relative)
-    Notify(nil)
-    do return end
     local buf = vim.api.nvim_get_current_buf()
     local pos = vim.fn.getcurpos()
-    vim.api.nvim_win_hide(0)
     local wins = vim.api.nvim_tabpage_list_wins(0)
+
+    vim.api.nvim_win_set_buf(relative, buf)
 
     for _, win in ipairs(wins) do
         local win_config = vim.api.nvim_win_get_config(win)
 
-        if (win_config.relative == '') then
-            vim.api.nvim_win_set_buf(win, buf)
-
-            if pos ~= nil then
-                vim.fn.setpos('.', pos)
-            end
-        else
+        if (win_config.relative ~= '') then
             vim.api.nvim_win_hide(win)
         end
+    end
+
+    if pos ~= nil then
+        vim.fn.setpos('.', pos)
     end
 end

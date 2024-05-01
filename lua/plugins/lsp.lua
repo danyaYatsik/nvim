@@ -2,6 +2,8 @@ return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     dependencies = {
+        'joechrisellis/lsp-format-modifications.nvim',
+
         -- LSP Support
         'neovim/nvim-lspconfig',             -- Required
         'williamboman/mason.nvim',           -- Optional
@@ -15,9 +17,11 @@ return {
     },
     config = function()
         local lsp = require('lsp-zero')
+        local goto = require('goto-preview')
+        local cmp = require('cmp')
+        local format_modifications = require('lsp-format-modifications')
         lsp.preset({})
 
-        local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         lsp.defaults.cmp_mappings({
             ['C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -28,12 +32,11 @@ return {
 
         lsp.set_preferences({ sign_icons = {} })
 
-        lsp.on_attach(function(_, bufnr)
+        lsp.on_attach(function(client, bufnr)
             -- see :help lsp-zero-keybindings
             -- to learn the available actions
             lsp.default_keymaps({ buffer = bufnr })
             local opts = { buffer = bufnr, remap = false }
-            local goto = require('goto-preview')
 
             vim.keymap.set("n", "<leader>gd", function() goto.goto_preview_definition({}) end, opts)
             vim.keymap.set("n", "<leader>gi", function() goto.goto_preview_implementation({}) end, opts)
@@ -41,19 +44,28 @@ return {
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
             vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
             vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
+            vim.keymap.set("n", "[k", function() vim.diagnostic.show_line_diagnostics() end, opts)
             vim.keymap.set("n", '<leader>ga', function() vim.lsp.buf.code_action() end, opts)
             vim.keymap.set("n", '<leader>gn', vim.lsp.buf.rename, opts)
             vim.keymap.set("n", '<leader>gs', function() vim.lsp.buf.signature_help() end, opts)
-            vim.keymap.set("n", '<leader>=', function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end,
+            vim.keymap.set("n", '<leader>=', function()
+                -- vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
+                format_modifications.format_modifications(client, bufnr)
+            end,
                 opts)
         end)
 
         local lsp_config = require('lspconfig')
         lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
-        lsp_config.jdtls.setup({
 
+        require('mason').setup({})
+        require('mason-lspconfig').setup({
+            ensure_installed = {'jdtls', 'lua_ls'},
+            handlers = {
+                lsp.default_setup,
+                jdtls = lsp.noop,
+            }
         })
-
         lsp.setup()
 
     end

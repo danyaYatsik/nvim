@@ -6,8 +6,8 @@ return {
         require('telescope').setup({
             defaults = {
                 file_ignore_patterns = {
-                    '*.png', '*.jpeg', '*.svg', '*.pdf'
-                }
+                    '*.png', '*.jpeg', '*.svg', '*.pdf', 'node_modules'
+                },
             }
         })
         local builtin = require('telescope.builtin')

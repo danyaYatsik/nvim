@@ -2,7 +2,7 @@ return {
     'echasnovski/mini.nvim',
     config = function ()
         require('mini.misc').setup()
-        MiniMisc.setup_auto_root()
+        MiniMisc.setup_auto_root({'gradlew', 'package.json'})
         MiniMisc.setup_restore_cursor()
 
         require('mini.sessions').setup({
@@ -15,7 +15,6 @@ return {
             footer = 'fuck it'
         })
         require('mini.indentscope').setup()
-        require('mini.comment').setup()
     end
 }
 

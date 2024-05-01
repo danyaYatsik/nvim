@@ -9,7 +9,8 @@ return {
 
         require('lualine').setup({
             options = {
-                globalstatus = true
+                globalstatus = true,
+                theme = 'tokyonight'
             },
             sections = {
                 lualine_x = {
